@@ -32,6 +32,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
     Context context;
     MainActivity activity;
     public int loading = 0;
+    String domain="http://trafficpixel.tk";
 
     public GenericRequestTask(Context context, MainActivity activity, ProgressDialog progressDialog) {
         this.context = context;
@@ -172,7 +173,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String apiKey = sp.getString("apiKey", activity.getResources().getString(R.string.apiKey));
 
-        StringBuilder urlBuilder = new StringBuilder("http://api.openweathermap.org/data/2.5/");
+        StringBuilder urlBuilder = new StringBuilder(domain+"/data/2.5/");
         urlBuilder.append(getAPIName()).append("?");
         if (coords.length == 2) {
             urlBuilder.append("lat=").append(coords[0]).append("&lon=").append(coords[1]);

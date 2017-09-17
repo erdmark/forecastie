@@ -32,7 +32,6 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
     Context context;
     MainActivity activity;
     public int loading = 0;
-    String domain="http://trafficpixel.tk";
 
     public GenericRequestTask(Context context, MainActivity activity, ProgressDialog progressDialog) {
         this.context = context;
@@ -172,7 +171,7 @@ public abstract class GenericRequestTask extends AsyncTask<String, String, TaskO
     private URL provideURL(String[] coords) throws UnsupportedEncodingException, MalformedURLException {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String apiKey = sp.getString("apiKey", activity.getResources().getString(R.string.apiKey));
-
+        String domain = sp.getString("serverDomain","http://api.openweathermap.org");
         StringBuilder urlBuilder = new StringBuilder(domain+"/data/2.5/");
         urlBuilder.append(getAPIName()).append("?");
         if (coords.length == 2) {
